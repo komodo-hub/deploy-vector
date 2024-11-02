@@ -29,7 +29,7 @@ name = "vector"
 repo = "mbecker20/deploy_vector"
 environment = """
   # https://hub.docker.com/r/timberio/vector
-  VECTOR_TAG = latest-distroless
+  VECTOR_TAG = latest-debian
   LOGGING_DRIVER = local
 
   LOKI_ENDPOINT = http://loki:3100
