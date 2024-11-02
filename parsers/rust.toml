@@ -1,6 +1,6 @@
 [sources.rust_logs]
 type = "docker_logs"
-include_labels = ["vector=rust"]
+include_labels = ["vector.parser=rust"]
 
 [transforms.rust_output]
 type = "remap"
