@@ -33,7 +33,7 @@ del(.message.s)
 [sinks.mongo_loki]
 type = "loki"
 inputs = ["mongo_output"]
-endpoint = "http://loki:3100"
+endpoint = "${LOKI_ENDPOINT:?must set LOKI_ENDPOINT in env}"
 encoding.codec = "json"
 
 [sinks.mongo_loki.labels]

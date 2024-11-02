@@ -1,23 +1,14 @@
 services:
 
   vector:
-    image: timberio/vector:${VECTOR_VERSION:-latest-distroless}
-    command: --config /config/config.toml --config /parsers/*.toml --config /override.toml
+    image: timberio/vector:${VECTOR_TAG:-latest-distroless}
+    command: --config /config/config.toml --config /parsers/*.toml
     network_mode: host
     logging:
       driver: ${LOGGING_DRIVER:-local}
-    configs:
-      - source: override
-        target: /override.toml
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
       - ./config.toml:/config/config.toml
       - ./parsers:/parsers
-
-configs:
-  override:
-    content: |
-      sinks.basic_loki.endpoint = "${LOKI_ENDPOINT:-http://loki:3100}"
-      sinks.key_value_loki.endpoint = "${LOKI_ENDPOINT:-http://loki:3100}"
-      sinks.mongo_loki.endpoint = "${LOKI_ENDPOINT:-http://loki:3100}"
-      sinks.rust_loki.endpoint = "${LOKI_ENDPOINT:-http://loki:3100}"
+    environment:
+      LOKI_ENDPOINT: ${LOKI_ENDPOINT:-http://loki:3100"}

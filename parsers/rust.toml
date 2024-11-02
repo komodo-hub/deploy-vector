@@ -21,7 +21,7 @@ split_msg = split(.message, r'[ \t]+', limit: 3)
 [sinks.rust_loki]
 type = "loki"
 inputs = ["rust_output"]
-endpoint = "http://loki:3100"
+endpoint = "${LOKI_ENDPOINT:?must set LOKI_ENDPOINT in env}"
 encoding.codec = "json"
 
 [sinks.rust_loki.labels]

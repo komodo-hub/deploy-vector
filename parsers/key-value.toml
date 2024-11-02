@@ -19,7 +19,7 @@ del(.message.level)
 [sinks.key_value_loki]
 type = "loki"
 inputs = ["key_value_output"]
-endpoint = "http://loki:3100"
+endpoint = "${LOKI_ENDPOINT:?must set LOKI_ENDPOINT in env}"
 encoding.codec = "json"
 
 [sinks.key_value_loki.labels]
