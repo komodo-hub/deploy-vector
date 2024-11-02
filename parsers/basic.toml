@@ -1,0 +1,23 @@
+[sources.basic_logs]
+type = "docker_logs"
+include_labels = ["vector.parser=basic"]
+
+[transforms.basic_output]
+type = "remap"
+inputs = ["basic_logs"]
+drop_on_abort = false
+source = """
+del(.container_id)
+del(.source_type)
+"""
+
+[sinks.basic_loki]
+type = "loki"
+inputs = ["basic_output"]
+endpoint = "http://loki:3100"
+encoding.codec = "json"
+
+[sinks.basic_loki.labels]
+source = "basic"
+container = "{{ .container_name }}"
+image = "{{ .image }}"
