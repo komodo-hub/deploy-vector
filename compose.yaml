@@ -1,7 +1,7 @@
 services:
 
   vector:
-    image: timberio/vector:${VECTOR_TAG:-latest-distroless}
+    image: timberio/vector:${VECTOR_TAG:-latest-debian}
     command: --config /config/config.toml --config /parsers/*.toml
     network_mode: host
     logging:
