@@ -8,6 +8,7 @@ inputs = ["rust_logs"]
 drop_on_abort = false
 source = """
 del(.container_id)
+del(.label)
 del(.source_type)
 
 .message = strip_ansi_escape_codes!(.message)

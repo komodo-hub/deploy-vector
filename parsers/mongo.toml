@@ -8,6 +8,7 @@ inputs = ["mongo_logs"]
 drop_on_abort = false
 source = """
 del(.container_id)
+del(.label)
 del(.source_type)
 
 .message = parse_json!(.message)
