@@ -1,8 +1,10 @@
 # Deploy Vector Docker Logs Collector
 
-Part of the [Komodo Hub collection.](https://github.com/mbecker20/komodo_hub)
+Part of the [Komodo Hub collection.](https://github.com/komodo-hub/komodo-hub)
 
 Runs Vector as a [docker logs collector](https://vector.dev/docs/reference/configuration/sources/docker_logs/), pointing to a Grafana Loki endpoint.
+
+https://hub.docker.com/r/timberio/vector
 
 ## Parsers
 
@@ -28,12 +30,15 @@ With this configuration, Vector picks up docker logs only for containers given t
 [[stack]]
 name = "vector"
 [stack.config]
-repo = "mbecker20/deploy_vector"
+repo = "komodo-hub/deploy-vector"
 environment = """
-  # https://hub.docker.com/r/timberio/vector
-  VECTOR_TAG = latest-debian
-  LOGGING_DRIVER = local
-
+  ## Route alerts to Loki at this endpoint
   LOKI_ENDPOINT = http://loki:3100
+  ## Attach to custom network to reach Loki.
+  NETWORK_MODE = bridge
+  ## https://hub.docker.com/r/timberio/vector
+  VECTOR_TAG = latest-debian
+  ## https://docs.docker.com/engine/logging/configure
+  LOGGING_DRIVER = local
 """
 ```
