@@ -1,6 +1,6 @@
 # Deploy Vector Docker Logs Collector
 
-Part of the [Komodo Hub collection.](https://github.com/komodo-hub/komodo-hub)
+Part of the [*Komodo Hub* collection.](https://github.com/komodo-hub/komodo-hub)
 
 Runs Vector as a [docker logs collector](https://vector.dev/docs/reference/configuration/sources/docker_logs/), pointing to a Grafana Loki endpoint.
 
